@@ -1,6 +1,7 @@
 body {
   background: #EEE;
   color: #5B5B5B;
+  font-family: 'Open Sans', sans-serif;
 }
 
 div.logo, div.name {
@@ -24,7 +25,7 @@ div.logo img {
 div.name {
   text-align: center;
   text-transform: uppercase;
-  font-family: 'OpenSans-Light', sans-serif;
+  font-weight: 300;
   font-size: 58px;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -32,7 +33,6 @@ div.name {
 }
 
 p {
-  font-family: 'Open Sans', sans-serif;
   font-size: 22px;
   line-height: 32px;
   padding-bottom: 32px;
