@@ -5,29 +5,44 @@
   <meta name="author" content="Roman Parykin">
   <meta name="description" content="Roman Parykin (aka donderom) site">
 
+  <script src="//use.typekit.net/poe7plz.js"></script>
+  <script>try{Typekit.load();}catch(e){}</script>
   <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="/css/grid.css">
+  <link rel="stylesheet" href="/css/smart-grid.css">
   <link rel="stylesheet" href="/css/main.css">
-  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:400,300'type='text/css'>
 </head>
 <body>
-  <div class="grid">
-    <div class="grid__col grid__col--12-of-12 logo">
-      <img src="/img/logo.png">
+  <div class="container main">
+    <div class="row">
+      <div class="columns three offset-one">
+        <img class="logo" src="/img/logo.png" width="150px" height="150px">
+      </div>
+
+      <div class="free-text right muted top-20 columns six">
+        <p>I write about everything related to functional programming <a class="light" href="http://monadzoo.com">on this blog</a>.</p>
+      </div>
     </div>
-    <div class="grid__col grid__col--2-of-5 grid__col--centered">
-      <div class="name">Roman Parykin</div>
+
+    <div class="row">
+      <div class="headline light columns six offset-one">
+        <h1>ROMAN PARYKIN</h1>
+      </div>
+      <div class="incut dark columns five">
+        <p>Passionate about distributed systems, cloud computing, real-world functional programming and modern web development.</p>
+      </div>
     </div>
-    <div class="grid__col grid__col--3-of-5 grid__col--centered">
-      <p>
-        I'm a software development engineer passionate about distributed systems, cloud computing, <a href="http://monadzoo.com">real-world functional programming</a> and modern web development.
-      </p>
-      <p>
-        I write about everything related to functional programming <a href="http://monadzoo.com">on this blog</a>.
-      </p>
-      <p>
-        You can follow me <a href="https://twitter.com/donderom">@donderom</a>, send me an <a href="mailto:hey@donderom.org">email</a> or fork some code on <a href="https://github.com/donderom">GitHub</a>.
-      </p>
+
+    <div class="row footer">
+      <div class="subtitle muted condensed top-20 right columns four">
+        Software Developm
+      </div>
+      <div class="incut dark floating no-gap columns seven">
+        <span class="subtitle condensed">ent Engineer</span>
+        <p>
+          You can follow me <a class="condensed dark link" href="https://twitter.com/donderom">@donderom</a>, send me an <a class="condensed dark link" href="mailto:hey@donderom.org">email</a> or fork some code on <a class="condensed dark link" href="https://github.com/donderom">GitHub</a>.
+        </p>
+      </div>
     </div>
   </div>
 </body>
+
