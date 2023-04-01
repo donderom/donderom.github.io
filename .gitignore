@@ -1,0 +1,5 @@
+.hugo_build.lock
+
+content/posts/my-first-one.md
+public/
+resources/

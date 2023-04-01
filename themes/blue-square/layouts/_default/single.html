@@ -1,0 +1,8 @@
+{{ define "main" }}
+{{ $dateFormat := .Site.Params.dateFormat | default "Jan 2, 2006" }}
+<article>
+  <h1>{{ .Title }}</h1>
+  <p class="subtitle">{{ .PublishDate.Format $dateFormat }}</p>
+  <section>{{ .Content }}</section>
+</article>
+{{ end }}

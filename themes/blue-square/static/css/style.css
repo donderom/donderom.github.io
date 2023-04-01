@@ -1,0 +1,179 @@
+body {
+    background-color: #ffffff;
+}
+
+article {
+    padding-top: 0;
+}
+
+article .subtitle {
+    color: #4d4d4d;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+
+article h2 {
+    padding-top: 1.5rem;
+}
+
+.header {
+    padding-top: 1rem;
+}
+
+.header .logo {
+    width: 45px;
+    height: 45px;
+    vertical-align: bottom;
+    margin-left: -7%;
+    margin-bottom: -58px;
+}
+
+.header a.title {
+    background: none;
+    background-color: #dbf1ff;
+    font-size: 28pt;
+    color: #000000;
+    text-shadow: none;
+}
+
+.header > .subtitle {
+    font-style: italic;
+    font-size: 1.8em;
+}
+
+.header section {
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.header .links {
+    padding-top: 16px;
+}
+
+.header .links > .link {
+    padding-right: 10px;
+}
+
+.header .links svg {
+    width: 24px;
+    height: 24px;
+    vertical-align: bottom;
+    color: #869299;
+}
+
+.header .links svg:hover path {
+    fill: #000000;
+}
+
+.header .links a {
+    background: none;
+    display: inline-block;
+}
+
+span.dot {
+    color: #6b9fbc;
+    margin-right: 0.5rem;
+}
+
+body > footer {
+    color: #869299;
+}
+
+/* Code */
+
+p > code {
+    background-color: #fafafa;
+    border: 1px solid #c8c8c8;
+    padding: 3px;
+}
+
+pre > code {
+    width: 80%;
+}
+
+pre > code2 {
+    border-left: 2px solid #98c7e6;
+    margin-left: 20px;
+    padding-left: 10px;
+}
+
+/* Tables */
+section > table {
+    font-size: 1.1rem;
+}
+
+thead tr {
+    background-color: #dbf1ff;
+    font-size: 1.2rem;
+}
+
+/* Syntax */
+code.language-sh .se {
+    background-color: #ffffff;
+    color: #999999;
+}
+
+/* Mermaid */
+g.cluster rect {
+    fill: #ffffff !important;
+    stroke: #000000 !important;
+    stroke-width: 0.5px !important;
+}
+
+g.node rect {
+    fill: #dbf1ff !important;
+    stroke: #000000 !important;
+    stroke-width: 0.1px !important;
+}
+
+g.edgePaths path {
+    stroke-width: 1px !important;
+}
+
+g.edgeLabel span.edgeLabel {
+    background-color: #ffffff !important;
+}
+
+@media (max-width: 760px) {
+    .header .logo {
+        margin-left: 256px;
+    }
+}
+
+@media screen and (min-width: 760px) and (max-width: 960px) {
+    section > p,
+    section > footer,
+    section > table {
+        width: 87.5%;
+    }
+
+    .marginnote.date {
+        width: 20%;
+        margin-right: -13.5%;
+    }
+    
+    .sidenote,
+    .marginnote:not(.date) {
+        width: 70%;
+        margin-right: -13.5%;
+        margin-left: 10px;
+        padding-left: 10px;
+        padding-bottom: 3px;
+        border-left: 3px solid #dbf1ff;
+    }
+
+    blockquote p,
+    blockquote footer {
+        width: 87.5%;
+    }
+
+    figure {
+        max-width: 87.5%;
+    }
+
+    section > dl,
+    section > ol,
+    section > ul {
+        width: 82.5%;
+    }
+}

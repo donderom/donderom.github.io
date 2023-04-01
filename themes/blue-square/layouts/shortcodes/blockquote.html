@@ -1,0 +1,4 @@
+<blockquote cite="{{ .Get "cite" }}">
+  <p>{{ .Inner | markdownify }}</p>
+  <footer><a href={{ .Get "cite" }}>{{ .Get "footer" }}</a></footer>
+</blockquote>
