@@ -4,13 +4,13 @@ title = "Roman Parykin"
 theme = "blue-square"
 
 disableKinds = ["section", "taxonomy", "term"]
-#ignoreErrors = ["error-disable-taxonomy"]
-
-pygmentsUseClasses = true
-pygmentsCodeFences = true
 
 [params]
   subtitle = "Software development, distributed systems, &amp; natural language processing"
 
 [taxonomies]
   feature = "features"
+
+[markup]
+  [markup.highlight]
+    noClasses = false
