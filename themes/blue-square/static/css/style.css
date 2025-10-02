@@ -2,6 +2,10 @@ body {
     background-color: #ffffff;
 }
 
+hr {
+    border-image: linear-gradient(to right, #33b5e1, #a363d5) 1;
+}
+
 article {
     padding-top: 0;
 }
