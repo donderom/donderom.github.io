@@ -83,6 +83,11 @@ body > footer {
     color: #869299;
 }
 
+.epigraph {
+    border-left: solid 2px;
+    border-image: linear-gradient(to bottom, #33b5e1, #a363d5) 1;
+}
+
 /* Code */
 
 p > code {
