@@ -123,6 +123,10 @@ code.language-sh .se {
 }
 
 /* Mermaid */
+.mermaid svg {
+    width: 60%;
+}
+
 g.cluster rect {
     fill: #ffffff !important;
     stroke: #000000 !important;
@@ -132,7 +136,7 @@ g.cluster rect {
 g.node rect {
     fill: #dbf1ff !important;
     stroke: #000000 !important;
-    stroke-width: 0.1px !important;
+    stroke-width: 0.2px !important;
 }
 
 g.edgePaths path {
@@ -141,11 +145,18 @@ g.edgePaths path {
 
 g.edgeLabel span.edgeLabel {
     background-color: #ffffff !important;
+    font-size: 1.0rem;
+    font-style: italic;
+    line-height: 1.4rem;
 }
 
 @media (max-width: 760px) {
     .header .logo {
         margin-left: 256px;
+    }
+
+    .mermaid svg {
+        width: 100%;
     }
 }
 
@@ -184,5 +195,9 @@ g.edgeLabel span.edgeLabel {
     section > ol,
     section > ul {
         width: 82.5%;
+    }
+
+    .mermaid svg {
+        width: 100%;
     }
 }
