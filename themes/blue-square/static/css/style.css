@@ -179,7 +179,8 @@ g.edgeLabel span.edgeLabel {
         margin-left: 10px;
         padding-left: 10px;
         padding-bottom: 3px;
-        border-left: 3px solid #dbf1ff;
+        border-left: 2px solid;
+        border-image: linear-gradient(to bottom, #ffb0de, #a363d5) 1;
     }
 
     blockquote p,
