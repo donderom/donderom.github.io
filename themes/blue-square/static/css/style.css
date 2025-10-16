@@ -1,9 +1,19 @@
+:root {
+    --color-blue-bg: #dbf1ff;
+    --color-blue: #33b5e1;
+    --color-purple: #a363d5;
+    --color-pink: #ffb0de;
+    --color-gray: #869299;
+    --color-white: #ffffff;
+    --color-black: #000000;
+}
+
 body {
-    background-color: #ffffff;
+    background-color: var(--color-white);
 }
 
 hr {
-    border-image: linear-gradient(to right, #33b5e1, #a363d5) 1;
+    border-image: linear-gradient(to right, var(--color-blue), var(--color-purple)) 1;
 }
 
 article {
@@ -11,7 +21,7 @@ article {
 }
 
 article .subtitle {
-    color: #4d4d4d;
+    color: var(--color-gray);
     font-size: 1.5rem;
     margin-bottom: 0;
 }
@@ -34,9 +44,9 @@ article h2 {
 
 .header a.title {
     background: none;
-    background-color: #dbf1ff;
+    background-color: var(--color-blue-bg);
     font-size: 28pt;
-    color: #000000;
+    color: var(--color-black);
     text-shadow: none;
 }
 
@@ -62,11 +72,11 @@ article h2 {
     width: 24px;
     height: 24px;
     vertical-align: bottom;
-    color: #869299;
+    color: var(--color-gray);
 }
 
 .header .links svg:hover path {
-    fill: #000000;
+    fill: var(--color-black);
 }
 
 .header .links a {
@@ -80,12 +90,12 @@ span.dot {
 }
 
 body > footer {
-    color: #869299;
+    color: var(--color-gray);
 }
 
 .epigraph {
     border-left: solid 2px;
-    border-image: linear-gradient(to bottom, #33b5e1, #a363d5) 1;
+    border-image: linear-gradient(to bottom, var(--color-blue), var(--color-purple)) 1;
 }
 
 /* Code */
@@ -112,14 +122,14 @@ section > table {
 }
 
 thead tr {
-    background-color: #dbf1ff;
+    background-color: var(--color-blue-bg);
     font-size: 1.2rem;
 }
 
 /* Syntax */
 code.language-sh .se {
-    background-color: #ffffff;
-    color: #999999;
+    background-color: var(--color-white);
+    color: var(--color-gray);
 }
 
 /* Mermaid */
@@ -128,14 +138,14 @@ code.language-sh .se {
 }
 
 g.cluster rect {
-    fill: #ffffff !important;
-    stroke: #000000 !important;
+    fill: var(--color-white) !important;
+    stroke: var(--color-black) !important;
     stroke-width: 0.5px !important;
 }
 
 g.node rect {
-    fill: #dbf1ff !important;
-    stroke: #000000 !important;
+    fill: var(--color-blue-bg) !important;
+    stroke: var(--color-black) !important;
     stroke-width: 0.2px !important;
 }
 
@@ -144,7 +154,7 @@ g.edgePaths path {
 }
 
 g.edgeLabel span.edgeLabel {
-    background-color: #ffffff !important;
+    background-color: var(--color-white) !important;
     font-size: 1.0rem;
     font-style: italic;
     line-height: 1.4rem;
@@ -180,7 +190,7 @@ g.edgeLabel span.edgeLabel {
         padding-left: 10px;
         padding-bottom: 3px;
         border-left: 2px solid;
-        border-image: linear-gradient(to bottom, #ffb0de, #a363d5) 1;
+        border-image: linear-gradient(to bottom, var(--color-pink), var(--color-purple)) 1;
     }
 
     blockquote p,
