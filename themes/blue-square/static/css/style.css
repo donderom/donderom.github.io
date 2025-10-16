@@ -100,12 +100,6 @@ pre > code {
     width: 80%;
 }
 
-pre > code2 {
-    border-left: 2px solid #98c7e6;
-    margin-left: 20px;
-    padding-left: 10px;
-}
-
 pre.chroma {
     -moz-tab-size: 4;
     -o-tab-size: 4;
