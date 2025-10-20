@@ -35,17 +35,17 @@ article h2 {
 }
 
 .header .logo {
-    width: 45px;
-    height: 45px;
+    width: 46px;
+    height: 46px;
     vertical-align: bottom;
     margin-left: -7%;
-    margin-bottom: -58px;
+    margin-bottom: -59px;
 }
 
 .header a.title {
     background: none;
     background-color: var(--color-blue-bg);
-    font-size: 28pt;
+    font-size: 2.5rem;
     color: var(--color-black);
     text-shadow: none;
 }
