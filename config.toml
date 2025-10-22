@@ -4,6 +4,7 @@ title = "Roman Parykin"
 theme = "blue-square"
 
 disableKinds = ["section", "taxonomy", "term"]
+disableHugoGeneratorInject = true
 
 [params]
   subtitle = "Software development, distributed systems, &amp; natural language processing"
