@@ -8,6 +8,7 @@ disableHugoGeneratorInject = true
 
 [params]
   subtitle = "Software development, distributed systems, &amp; natural language processing"
+  banner = "banner.png"
 
 [taxonomies]
   feature = "features"
