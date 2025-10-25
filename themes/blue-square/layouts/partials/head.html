@@ -7,8 +7,13 @@
   <meta name="og:image" content="{{ .Site.BaseURL }}/{{ .Site.Params.banner }}">
   <meta name="og:site_name" content="{{ .Site.Title }}">
   <meta name="og:title" content="{{ .Site.Title }}">
-  <meta name="og:url" content="{{ .Site.BaseURL }}">
   <meta name="og:type" content="website">
+  <meta name="og:url" content="{{ .Site.BaseURL }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:description" content="{{ .Site.Params.subtitle }}">
+  <meta name="twitter:image" content="{{ .Site.BaseURL }}/{{ .Site.Params.banner }}">
+  <meta name="twitter:title" content="{{ .Site.Title }}">
+  <meta name="twitter:url" content="{{ .Site.BaseURL }}">
   {{ if in .Params.features "math" }}
     <script>
     MathJax = {
