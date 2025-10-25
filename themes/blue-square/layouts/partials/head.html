@@ -1,4 +1,6 @@
 <head>
+  {{ $title := print .Title " | " .Site.Title }}
+  {{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="{{ .Site.Title }}">
@@ -6,13 +8,13 @@
   <meta name="og:description" content="{{ .Site.Params.subtitle }}">
   <meta name="og:image" content="{{ .Site.BaseURL }}/{{ .Site.Params.banner }}">
   <meta name="og:site_name" content="{{ .Site.Title }}">
-  <meta name="og:title" content="{{ .Site.Title }}">
+  <meta name="og:title" content="{{ $title }}">
   <meta name="og:type" content="website">
   <meta name="og:url" content="{{ .Site.BaseURL }}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:description" content="{{ .Site.Params.subtitle }}">
   <meta name="twitter:image" content="{{ .Site.BaseURL }}/{{ .Site.Params.banner }}">
-  <meta name="twitter:title" content="{{ .Site.Title }}">
+  <meta name="twitter:title" content="{{ $title }}">
   <meta name="twitter:url" content="{{ .Site.BaseURL }}">
   {{ if in .Params.features "math" }}
     <script>
@@ -37,7 +39,5 @@
   <link rel="stylesheet" type="text/css" href="/css/syntax.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="canonical" href="{{ .Site.BaseURL }}">
-  {{ $title := print .Title " | " .Site.Title }}
-  {{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}
   <title>{{ $title }}</title>
 </head>
