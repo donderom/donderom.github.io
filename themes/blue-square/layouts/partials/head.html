@@ -3,6 +3,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="{{ .Site.Title }}">
   <meta name="description" content="{{ .Site.Params.subtitle }}">
+  <meta name="og:description" content="{{ .Site.Params.subtitle }}">
+  <meta name="og:image" content="{{ .Site.BaseURL }}/{{ .Site.Params.banner }}">
+  <meta name="og:site_name" content="{{ .Site.Title }}">
+  <meta name="og:title" content="{{ .Site.Title }}">
+  <meta name="og:url" content="{{ .Site.BaseURL }}">
+  <meta name="og:type" content="website">
   {{ if in .Params.features "math" }}
     <script>
     MathJax = {
