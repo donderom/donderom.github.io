@@ -1,5 +1,6 @@
 ---
 title: "Recipe to slow down your Clojure DSL"
+description: "A playful guide on how to make the elegant Clojure DSL gloriously slow in style"
 date: 2012-10-12T23:21:11+03:00
 draft: false
 ---

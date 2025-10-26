@@ -1,5 +1,6 @@
 ---
 title: "Ruby Symbol#to_proc is a lambadass"
+description: "Inconsistencies in the Symbol#to_proc implementation across Ruby interpreters"
 date: 2013-08-12T23:53:41+03:00
 draft: false
 ---

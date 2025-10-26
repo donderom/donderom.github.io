@@ -1,5 +1,6 @@
 ---
 title: "Stretchy architecture"
+description: "Stretchy architecture in systems modeling"
 date: 2023-07-23T16:33:52+03:00
 draft: false
 ---

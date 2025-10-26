@@ -1,5 +1,6 @@
 ---
 title: "Functional builder pattern"
+description: "Make the Builder Pattern functional"
 date: 2017-03-11T15:54:04+02:00
 draft: false
 ---

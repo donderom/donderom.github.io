@@ -1,5 +1,6 @@
 ---
 title: "Adaptive Reranker Weight"
+description: "Adaptive weighting in Retrieve & Re-rank pipelines for improved document ranking"
 date: 2022-10-15T11:38:30+02:00
 draft: false
 features: ["math"]

@@ -1,5 +1,6 @@
 ---
 title: "Scala Function object to the rescue"
+description: "Useful utility methods for higher-order functions in Scala's Function object"
 date: 2015-04-01T20:43:55+03:00
 draft: false
 ---

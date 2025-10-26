@@ -1,5 +1,6 @@
 ---
 title: "Compositional streaming of services with FS2"
+description: "Everything's a stream: building composable FS2 services"
 date: 2020-05-23T12:56:19+02:00
 draft: false
 ---

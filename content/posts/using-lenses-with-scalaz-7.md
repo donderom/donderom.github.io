@@ -1,5 +1,6 @@
 ---
 title: "Using Lenses with Scalaz 7"
+description: "Migration guide to Scalaz 7 lenses"
 date: 2012-11-18T18:49:05+03:00
 draft: false
 ---

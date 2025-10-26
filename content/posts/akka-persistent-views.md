@@ -1,5 +1,6 @@
 ---
 title: "Akka persistent views"
+description: "Akka Persistent Views and their role in event sourcing and the CQRS pattern"
 date: 2015-04-10T22:09:55+03:00
 draft: false
 ---

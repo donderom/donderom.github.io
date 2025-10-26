@@ -1,5 +1,6 @@
 ---
 title: "Hugging Face pipeline inference optimization"
+description: "Impact of optimization techniques on 🤗 Transformers pipeline performance"
 date: 2023-02-19T14:43:36+02:00
 draft: false
 ---
