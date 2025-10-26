@@ -10,12 +10,12 @@
   <meta name="og:site_name" content="{{ .Site.Title }}">
   <meta name="og:title" content="{{ $title }}">
   <meta name="og:type" content="website">
-  <meta name="og:url" content="{{ absURL "" }}">
+  <meta name="og:url" content="{{ .Permalink }}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:description" content="{{ .Site.Params.subtitle }}">
   <meta name="twitter:image" content="{{ absURL .Site.Params.banner }}">
   <meta name="twitter:title" content="{{ $title }}">
-  <meta name="twitter:url" content="{{ absURL "" }}">
+  <meta name="twitter:url" content="{{ .Permalink }}">
   {{ if in .Params.features "math" }}
     <script>
     MathJax = {
@@ -38,6 +38,6 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link rel="stylesheet" type="text/css" href="/css/syntax.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="canonical" href="{{ absURL "" }}">
+  <link rel="canonical" href="{{ .Permalink }}">
   <title>{{ $title }}</title>
 </head>
