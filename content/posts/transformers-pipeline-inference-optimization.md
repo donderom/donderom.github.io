@@ -4,7 +4,7 @@ date: 2023-02-19T14:43:36+02:00
 draft: false
 ---
 
-The goal of this post is to show how to apply few practical optimizations to improve inference performance of [🤗 Transformers](https://huggingface.co/docs/transformers/index) pipelines on a single GPU. Compatibility with pipeline API is the driving factor behind the selection of approaches for inference optimization. This is a practical guide to optimizing inference of 🤗 Transformers pipelines based on my personal experience. For more methods on how to make transformer inference more efficient, I recommend checking out Lilian Weng's blog{{< sidenote >}}[Weng, Lilian. (Jan 2023). Large Transformer Model Inference Optimization. Lil’Log](https://lilianweng.github.io/posts/2023-01-10-inference-optimization/).{{< /sidenote >}}.
+The goal of this post is to show how to apply a few practical optimizations to improve inference performance of [🤗 Transformers](https://huggingface.co/docs/transformers/index) pipelines on a single GPU. Compatibility with pipeline API is the driving factor behind the selection of approaches for inference optimization. This is a practical guide to optimizing inference of 🤗 Transformers pipelines based on my personal experience. For more methods on how to make transformer inference more efficient, I recommend checking out Lilian Weng's blog{{< sidenote >}}[Weng, Lilian. (Jan 2023). Large Transformer Model Inference Optimization. Lil’Log](https://lilianweng.github.io/posts/2023-01-10-inference-optimization/).{{< /sidenote >}}.
 
 All the code is run on NVIDIA RTX 4090 24G using Python 3.10 and PyTorch 1.13.1.
 Other dependencies are:
@@ -15,13 +15,13 @@ optimum[onnxruntime-gpu]==1.6.4
 transformers==4.26.1
 ```
 
-To start off, let's establish the baseline and evaluation method that will remain consistent across all approaches.
+To start off, let's establish the baseline and evaluation method, which will remain consistent across all approaches.
 
 ## Baseline
 
-As a baseline I'm going to use the [RoBERTa base](https://huggingface.co/roberta-base) model fine-tuned on the [SQuAD](https://huggingface.co/datasets/squad) dataset for extractive question answering. The training is done using the scripts from the [transformers](https://github.com/huggingface/transformers) [examples](https://github.com/huggingface/transformers/tree/v4.26.1/examples/pytorch/question-answering){{< sidenote >}}All training examples are based on the `v4.26.1` tag.{{< /sidenote >}} for PyTorch.
+As a baseline, I'm going to use the [RoBERTa base](https://huggingface.co/roberta-base) model fine-tuned on the [SQuAD](https://huggingface.co/datasets/squad) dataset for extractive question answering. The training is done using the scripts from the [transformers](https://github.com/huggingface/transformers) [examples](https://github.com/huggingface/transformers/tree/v4.26.1/examples/pytorch/question-answering){{< sidenote >}}All training examples are based on the `v4.26.1` tag.{{< /sidenote >}} for PyTorch.
 
-First let's fine-tune the `roberta-base` model on the `squad` dataset for two epochs with the following parameters (to match the examples from the `transformers`):
+First, let's fine-tune the `roberta-base` model on the `squad` dataset for two epochs with the following parameters (to match the examples from the `transformers`):
 
 ```sh
 python run_qa.py \
@@ -80,9 +80,9 @@ qa_eval(model=model, tokenizer=tokenizer)
 {'exact_match': 85.6481, 'f1': 92.1859, 'samples_per_second': 293.3532}
 ```
 
-The accuracy metrics are `exact_match` and `f1` while the throughput is reported as `samples_per_second`. The important thing to note is that the numbers are for the pipeline and not the model itself, as the pipeline has extra logic for computing the best answer. Additionally, there is overhead caused by the evaluation. According to which, the pipeline baseline is indicated by an `f1` score of 92.1859 and a throughput of 293 samples per second. The exact numbers are not that significant as relative performance improvements compared to the baseline.
+The accuracy metrics are `exact_match` and `f1`, while the throughput is reported as `samples_per_second`. The important thing to note is that the numbers are for the pipeline and not the model itself, as the pipeline has extra logic for computing the best answer. Additionally, there is overhead caused by the evaluation. According to which, the pipeline baseline is indicated by an `f1` score of 92.1859 and a throughput of 293 samples per second. The exact numbers are not that significant as relative performance improvements compared to the baseline.
 
-With the baseline and evaluation out of the way let's see how to apply the first optimization technique---knowledge distillation.
+With the baseline and evaluation out of the way, let's see how to apply the first optimization technique---knowledge distillation.
 
 ## Knowledge Distillation
 
@@ -122,7 +122,7 @@ Although a 5% drop in pipeline accuracy might be the biggest trade-off to make, 
 We also studied whether we could add another step of distillation during the adaptation phase by fine-tuning DistilBERT on SQuAD using a BERT model previously fine-tuned on SQuAD as a teacher for an additional term in the loss (knowledge distillation). In this setting, there are thus two successive steps of distillation, one during the pre-training phase and one during the adaptation phase. In this case, we were able to reach interesting performances given the size of the model: 79.8 F1 and 70.4 EM, i.e. within 3 points of the full model.
 {{< /blockquote >}}
 
-Let me show how to implement two-step knowledge distillation to improve accuracy while keeping the throughput. In order to do this we need to add one file to the same folder where the `run_qa.py` script is (`examples/pytorch/question-answering`):
+Let me show how to implement two-step knowledge distillation to improve accuracy while keeping the throughput. In order to do this, we need to add one file to the same folder where the `run_qa.py` script is (`examples/pytorch/question-answering`):
 
 `distil_trainer_qa.py`
 ```py
@@ -244,7 +244,7 @@ The two-step distillation process maintains a throughput of 31% over the baselin
 
 ## Automatic Mixed Precision
 
-*Automatic Mixed Precision (AMP)* allows to use a mix of `torch.float32` and half-precision (`torch.float16`) floating point datatypes during inference thus reducing the memory footprint and improving performance while maintaining accuracy.
+*Automatic Mixed Precision (AMP)* allows to use a mix of `torch.float32` and half-precision (`torch.float16`) floating point datatypes during inference, thereby reducing the memory footprint and improving performance while maintaining accuracy.
 
 ```py
 import torch
@@ -261,7 +261,7 @@ with torch.cuda.amp.autocast(dtype=torch.float16):
 {'exact_match': 81.7029, 'f1': 88.7576, 'samples_per_second': 416.5399}
 ```
 
-In addition to the performance improvement by 8.4% compared to the original model{{< sidenote >}}Double that for the non-distilled baseline model.{{< /sidenote >}}, there is also a nearly 0.03% increase in accuracy as well. In general, it's a safe approach to use the AMP `autocast` with language models. Later on, we'll see that even in situations where it does not impact the performance, it typically does not cause any harm.
+In addition to the performance improvement by 8.4% compared to the original model{{< sidenote >}}Double that for the non-distilled baseline model.{{< /sidenote >}}, there is also a nearly 0.03% increase in accuracy as well. In general, it's a safe approach to use the AMP `autocast` with language models. Later on, we'll see that, even in situations where it does not impact the performance, it typically does not cause any harm.
 
 ## TorchScript
 
@@ -437,4 +437,4 @@ Ok, these are some of the optimization techniques that work well with 🤗 Trans
 | Distillation + TorchScript + AMP | 81.7        | 88.76     | 96%     | 446.3       | 1.52    |
 | Distillation + Optimum (ORT)     | 81.7        | 88.76     | 96%     | **477.7**   | 1.63    |
 
-Although the difference is negligible, using 🤗 Optimum with ONNX Runtime results in slightly higher accuracy compared to the baseline model. What's even better is that all the described methods have no negative impact on accuracy, except for knowledge distillation. It looks like that in order to surpass the 1.5x throughput speedup, one may have to sacrifice some accuracy. While this threshold is specific to the particular hardware, the general trend should be similar for different GPUs. So it's not surprising that the highest throughput is achieved by using 🤗 Optimum in combination with knowledge distillation, as these are the two most significant contributing factors.
+Although the difference is negligible, using 🤗 Optimum with ONNX Runtime results in slightly higher accuracy compared to the baseline model. What's even better is that all the described methods have no negative impact on accuracy, except for knowledge distillation. It looks like that, in order to surpass the 1.5x throughput speedup, one may have to sacrifice some accuracy. While this threshold is specific to the particular hardware, the general trend should be similar for different GPUs. So it's not surprising that the highest throughput is achieved by using 🤗 Optimum in combination with knowledge distillation, as these are the two most significant contributing factors.

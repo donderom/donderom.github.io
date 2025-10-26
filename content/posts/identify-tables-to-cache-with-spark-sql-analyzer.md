@@ -4,7 +4,7 @@ date: 2018-02-28T19:56:54+03:00
 draft: false
 ---
 
-Consider having dozens of Cassandra tables as data sources/sinks with Spark SQL transformations in between. Sometimes loading the whole table or a data subset by multiple keys is inevitable. Every optimization applied to the underlying data source and intermediary dataframes goes a long way. One of such optimizations is caching. As the number of transformations grows, the DAG can become unreadable very quickly. It would be nice to be able to check if there are any candidates for caching without having to dig deep into the code. Let's take a look at some examples.
+Consider having dozens of Cassandra tables as data sources/sinks, with Spark SQL transformations in between. Sometimes, loading the whole table or a data subset by multiple keys is inevitable. Every optimization applied to the underlying data source and intermediary dataframes goes a long way. One of such optimizations is caching. As the number of transformations grows, the DAG can become unreadable very quickly. It would be nice to be able to check if there are any candidates for caching without having to dig deep into the code. Let's take a look at some examples.
 
 ## Use Cases
 

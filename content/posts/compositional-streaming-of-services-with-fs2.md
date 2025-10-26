@@ -4,7 +4,7 @@ date: 2020-05-23T12:56:19+02:00
 draft: false
 ---
 
-The intention of this post is to demonstrate a blueprint for composing multiple services as streams within the scope of one process with [FS2](https://fs2.io). The idea is that when dealing with unbounded I/O streams, modeling everything as streams leads to better composition.
+The intention of this post is to demonstrate a blueprint for composing multiple services as streams within the scope of one process with [FS2](https://fs2.io). The idea is that, when dealing with unbounded I/O streams, modeling everything as streams leads to better composition.
 
 The libraries that will be used for all the examples:
 
@@ -38,7 +38,7 @@ object AWS {
 }
 ```
 
-We're using the [refined](https://github.com/fthomas/refined) library here to specify the `Region` type which checks if a string matches the region name regex.
+We're using the [refined](https://github.com/fthomas/refined) library here to specify the `Region` type, which checks if a string matches the region name regex.
 
 The full config will look like this:
 
@@ -82,7 +82,7 @@ object Config {
 }
 ```
 
-To load the configuration, we have to specify an effect type that is going to be the cats-effect's [`IO`](https://typelevel.org/cats-effect/docs/2.x/datatypes/io) type:
+To load the configuration, we have to specify an effect type, which in this case will be cats-effect's [`IO`](https://typelevel.org/cats-effect/docs/2.x/datatypes/io) type:
 
 ```scala
 val config: IO[Config] = Config.config.load[IO]
@@ -95,7 +95,7 @@ An initial stream to work with can be built by evaluating the `IO` effect to emi
 val stream: fs2.Stream[IO, Config] = fs2.Stream.eval(config)
 ```
 
-We can go back any time with `stream.compile.lastOrError: IO[Config]`. The main reason not to is to model an effectful computation as a stream to compose it with a streaming service later on. In other words, instead of "wrapping" a dependency inside a stream, this modeling approach represents it as a stream itself.
+We can go back any time with `stream.compile.lastOrError: IO[Config]`. The main reason not to, is to model an effectful computation as a stream, allowing it to be composed with a streaming service later on. In other words, instead of "wrapping" a dependency inside a stream, this modeling approach represents it as a stream itself.
 
 Another dependency is an Elasticsearch client. Here's a complete example of the client interface with a dummy implementation:
 
@@ -124,7 +124,7 @@ stream.map(config => ElasticsearchClient.create[IO](config.es))
 // fs2.Stream[IO, ElasticsearchClient[IO]] = Stream(..)
 ```
 
-Although it's completely valid, the idea is to stick with modeling everything as streams. Plus the config could be needed downstream making both the config and the client dependencies.
+Although it's completely valid, the idea is to stick with modeling everything as streams. Additionally, the config could be needed downstream, making both the config and the client dependencies.
 
 ```scala
 val stream: fs2.Stream[IO, ElasticsearchClient[IO]] = for {
@@ -133,10 +133,10 @@ val stream: fs2.Stream[IO, ElasticsearchClient[IO]] = for {
 } yield client
 ```
 
-At this step, configuration loading and client creation emit one value so they could stay in `IO` without a problem. The composition would be similar. When FS2 shines, though, is in dealing with I/O computations in constant memory.
+At this step, configuration loading and client creation emit one value, so they can remain in `IO` without any problem. The composition would be similar. When FS2 shines, though, is in dealing with I/O computations in constant memory.
 
 ## Composition
-It's common to run both an HTTP server and a Kafka (or any other) consumer concurrently within the scope of one microservice. Continuing this example an HTTP server could serve data from an Elasticsearch index while a consumer would index data from a Kafka topic(s). {{< sidenote >}}The code will be more abstract but two good libraries with FS2 support are [http4s](https://http4s.org/) and [fs2-kafka](https://fd4s.github.io/fs2-kafka/) respectively.{{< /sidenote >}}
+It's common to run both an HTTP server and a Kafka (or any other) consumer concurrently within the scope of one microservice. Continuing this example, an HTTP server could serve data from an Elasticsearch index, while a consumer would index data from a Kafka topic(s). {{< sidenote >}}The code will be more abstract but two good libraries with FS2 support are [http4s](https://http4s.org/) and [fs2-kafka](https://fd4s.github.io/fs2-kafka/) respectively.{{< /sidenote >}}
 
 A hypothetical API for a consumer that requires its own config and an Elasticsearch client producing a stream:
 
@@ -156,7 +156,7 @@ def server[F[_]](implicit F: ConcurrentEffect[F]): Resource[F, Server[F]] = ???
 
 Abstracting over effect type (all these `F[_]`) following the least powerful typeclass rule is crucial for stream composition and testing. There is no need to constrain an effect with `ConcurrentEffect` when `Sync` or `Applicative` would be enough.
 
-Given that the consumer and the server are independent services, they cannot be composed like dependencies as they are supposed to run *concurrently*. Instead of "sequential" `flatMap`, we can use `parJoin` which will nondeterministically merge a stream of streams into a single stream. To run multiple streams concurrently with FS2:
+Given that the consumer and the server are independent services, they cannot be composed like dependencies, as they are supposed to run *concurrently*. Instead of "sequential" `flatMap`, we can use `parJoin`, which will nondeterministically merge a stream of streams into a single stream. To run multiple streams concurrently with FS2:
 
 ```scala {hl_lines=7}
 val stream: fs2.Stream[IO, Unit] = for {
@@ -195,6 +195,6 @@ object Main extends IOApp {
 }
 ```
 
-Not only is the flow concise, but every line packs a punch. The part with `eval` includes type-safe configuration loading semantics, performs it in parallel with validation, and evaluates an effect. Then, any value can be represented as a stream, be it effectful (with `eval`) or not (with `emit`, where a sequence of values is handled with `emits`). The main part comprises an unbounded stream of messages and a server with built-in resource safety (`resource`) that run concurrently (`parJoin`, where service independence can be controlled by changing the concurrency operation). Adding a third service to the example (let say a message producer along with the consumer) won't change the structure at all. To finish things off, there is a centralized place for error handling and straightforward support for testing. Mocking every dependency and service in unit tests can be avoided by replacing the `IO` effect with any other. Streaming semantics are already tested by FS2 library itself which allows focusing on service logic.
+Not only is the flow concise, but every line packs a punch. The part with `eval` includes type-safe configuration loading semantics, performs it in parallel with validation, and evaluates an effect. Then, any value can be represented as a stream, be it effectful (with `eval`) or not (with `emit`, where a sequence of values is handled with `emits`). The main part comprises an unbounded stream of messages and a server with built-in resource safety (`resource`) that run concurrently (`parJoin`, where service independence can be controlled by changing the concurrency operation). Adding a third service to the example (let say a message producer along with the consumer) won't change the structure at all. To finish things off, there is a centralized place for error handling and straightforward support for testing. Mocking every dependency and service in unit tests can be avoided by replacing the `IO` effect with another. Streaming semantics are already tested by the FS2 library itself, which allows focusing on service logic.
 
 > *Why not use compositional streaming modeling for applications with streaming core?*

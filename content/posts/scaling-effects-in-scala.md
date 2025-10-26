@@ -48,11 +48,11 @@ io.to[Task]: Task[Int]              // IO[A] → Task[A]
 Task.fromFuture(Future(42)).toIO.to[Task].runToFuture: Future[Int]
 ```
 
-Horizontal scaling is bidirectional if types are isomorphic and unidirectional otherwise.
+Horizontal scaling is bidirectional if types are isomorphic, and unidirectional otherwise.
 
 ## Vertical Scaling
 
-⼐ With ability to abstract over types the next step is to abstract over effects.
+⼐ With ability to abstract over types, the next step is to abstract over effects.
 
 ***Algebra* is to effect what effect is to type.**
 
@@ -121,7 +121,7 @@ trait PayloadAlgebra[F[_]] {
 
 ⇅ Vertical scaling implies both scaling up and scaling down.
 
-☰ Different effects along with algebra interpreters are computed in one place. {{< marginnote >}}https://typelevel.org/cats/datatypes/writer.html{{< /marginnote >}}
+☰ Different effects, along with algebra interpreters, are computed in one place. {{< marginnote >}}https://typelevel.org/cats/datatypes/writer.html{{< /marginnote >}}
 
 ↓ The API is scaled down being encoded as tagless final `trait PayloadAlgebra[F[_]]`.
 

@@ -44,9 +44,9 @@ is rewritten by compiler as
 ```scala
 StringContext("x is ", "").s(x)
 ```
-First of all, it explains why using string interpolation is safe, as demonstrated in the previous section where passing a nonexistent variable as a parameter for a method call leads to a `not found: value [nonexistent variable here]` error. Secondly, it allows us to define our own string interpolators, potentially reusing the existing ones.
+First of all, it explains why using string interpolation is safe, as demonstrated in the previous section, where passing a nonexistent variable as a parameter for a method call leads to a `not found: value [nonexistent variable here]` error. Secondly, it allows us to define our own string interpolators, potentially reusing the existing ones.
 
-Let's create our own string interpolator similar to the `s` interpolator with debug information added to the resulting string:
+Let's create our own string interpolator, similar to the `s` interpolator, but with debug information added to the resulting string:
 
 ```scala
 import java.util.Date
@@ -69,7 +69,7 @@ log"$logString ${1+1}"
 ```
 res8: String = [DEBUG 21:51:50] one plus one is 2
 ```
-The code above uses two new features in Scala 2.10, namely implicit classes and value classes (by extending `AnyVal`). Since any interpolator is, in fact, a method of the `StringContext` class, we can easily use it in our own code. In the example, we use the `s` function to build the resulting string instead of bothering with its implementation in our new interpolator. So the string interpolation
+The code above uses two new features introduced in Scala 2.10: implicit classes and value classes (by extending `AnyVal`). Since any interpolator is, in fact, a method of the `StringContext` class, we can easily use it in our own code. In the example, we use the `s` function to build the resulting string instead of bothering with its implementation in our new interpolator. So the string interpolation
 ```scala
 log"$logString ${1+1}"
 ```

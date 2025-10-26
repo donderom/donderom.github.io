@@ -152,4 +152,4 @@ scala> nameL ->>- upNameL run user  // uses flatMap (>>-) for sequencing monadic
 res16: (User, String) = (User(Nad,Address(Sallad,79071)),NAD)
 ```
 
-Examining the examples above, it's not hard to notice that there is a bunch of new methods and convenient aliases, especially for using lens as a state monad. Lenses have become even easier to use now, when the underlying type complexity is under the hood.
+Examining the examples above, it's not hard to notice that there is a bunch of new methods and convenient aliases, especially for using lens as a state monad. Lenses have become even easier to use now, with the underlying type complexity hidden.

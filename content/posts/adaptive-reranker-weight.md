@@ -44,7 +44,7 @@ reranked = rerank(query=query, docs=docs)
 #  0.41810846856511075]
 ```
 
-Now given two sets of scores per document, what is the total score? Calculating the average would be one of the simplest approaches that could work.
+Now, given two sets of scores per document, what is the total score? Calculating the average is one of the simplest approaches that could work.
 
 ```py
 total_scores = [(s + r) / 2 for s, r in zip(scores, reranked)]
@@ -80,7 +80,7 @@ If we view the document positions before and after re-ranking as observed and pr
 
 $$RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_{i}-x_{i})^{2}}$$
 
-Using the scores from above it can be calculated as follows:
+Using the scores from above, it can be calculated as follows:
 
 ```py
 import numpy as np
@@ -103,7 +103,7 @@ np.mean(np.abs(reranked_pos - retrieved_pos))
 # 1.6
 ```
 
-Using different error functions will result in different values given the same magnitude of errors. In this case the error of the MAE is smaller than the RMSE. We cannot compare the errors of different functions, but using the same magnitude of numbers allows us to choose any of them based on how large we want the resulting value to be.
+Using different error functions will result in different values given the same magnitude of errors. In this case, the error of the MAE is smaller than the RMSE. We cannot compare the errors of different functions, but using the same magnitude of numbers allows us to choose any of them based on how large we want the resulting value to be.
 
 *Adaptive reranker weight* is the measure between the retrieved and reranked positions. In other words, the adaptive weight is determined by how much the retrieved documents are rearranged by the re-ranker.
 
