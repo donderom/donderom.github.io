@@ -1,18 +1,20 @@
 <head>
   {{ $title := print .Title " | " .Site.Title }}
   {{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}
+  {{ $desc := print .Description }}
+  {{ if .IsHome }}{{ $desc = .Site.Params.subtitle }}{{ end }}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="{{ .Site.Title }}">
-  <meta name="description" content="{{ .Site.Params.subtitle }}">
-  <meta name="og:description" content="{{ .Site.Params.subtitle }}">
+  <meta name="description" content="{{ $desc }}.">
+  <meta name="og:description" content="{{ $desc }}.">
   <meta name="og:image" content="{{ absURL .Site.Params.banner }}">
   <meta name="og:site_name" content="{{ .Site.Title }}">
   <meta name="og:title" content="{{ $title }}">
   <meta name="og:type" content="website">
   <meta name="og:url" content="{{ .Permalink }}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:description" content="{{ .Site.Params.subtitle }}">
+  <meta name="twitter:description" content="{{ $desc }}.">
   <meta name="twitter:image" content="{{ absURL .Site.Params.banner }}">
   <meta name="twitter:title" content="{{ $title }}">
   <meta name="twitter:url" content="{{ .Permalink }}">
