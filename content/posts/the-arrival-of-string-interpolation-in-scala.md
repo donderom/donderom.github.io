@@ -1,6 +1,6 @@
 ---
 title: "The arrival of String Interpolation in Scala"
-description: "Introducing Scala String Interpolation"
+description: "Safe and extensible String Interpolation in Scala 2.10"
 date: 2013-01-06T21:31:10+03:00
 draft: false
 ---

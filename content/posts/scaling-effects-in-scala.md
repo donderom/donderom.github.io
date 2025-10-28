@@ -1,6 +1,6 @@
 ---
 title: "Scaling effects in Scala"
-description: "Different types of effect scaling in Scala"
+description: "Horizontal and vertical effect scaling in Scala"
 date: 2019-02-10T15:32:58+02:00
 draft: false
 features: ["diag"]

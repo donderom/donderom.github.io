@@ -1,6 +1,6 @@
 ---
 title: "Identify tables to cache with Spark SQL Analyzer"
-description: "Using Spark Catalyst to identify tables for caching"
+description: "Using Spark Catalyst optimizer to identify tables for caching"
 date: 2018-02-28T19:56:54+03:00
 draft: false
 ---
