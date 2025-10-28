@@ -95,9 +95,28 @@ h3 {
     display: inline-block;
 }
 
-span.dot {
-    color: #6b9fbc;
-    margin-right: 0.5rem;
+p.list {
+    transition: padding-left .4s ease;
+}
+
+p.list:hover {
+    padding-left: 12px;
+    border-left: 1.5px solid var(--color-blue);
+}
+
+p.list .marginnote {
+    color: var(--color-gray);
+}
+
+p.list span.desc {
+    display: block;
+    font-size: 1.2rem;
+}
+
+p.list span.date {
+    display: none;
+    font-size: 1.1rem;
+    color: var(--color-gray);
 }
 
 body > footer {
@@ -176,6 +195,10 @@ g.edgeLabel span.edgeLabel {
         margin-left: 256px;
     }
 
+    p.list span.date {
+        display: block;
+    }
+
     .mermaid svg {
         width: 100%;
     }
@@ -188,13 +211,13 @@ g.edgeLabel span.edgeLabel {
         width: 87.5%;
     }
 
-    .marginnote.date {
+    .marginnote.listnote {
         width: 20%;
         margin-right: -13.5%;
     }
     
     .sidenote,
-    .marginnote:not(.date) {
+    .marginnote:not(.listnote) {
         width: 70%;
         margin-right: -13.5%;
         margin-left: 10px;
