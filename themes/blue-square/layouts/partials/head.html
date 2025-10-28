@@ -37,8 +37,8 @@
     </script>
   {{ end }}
   <link rel="stylesheet" type="text/css" href="/css/tufte.css">
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
-  <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css?{{ time.Now.Unix }}">
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css?{{ time.Now.Unix }}">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="canonical" href="{{ .Permalink }}">
   <title>{{ $title }}</title>
