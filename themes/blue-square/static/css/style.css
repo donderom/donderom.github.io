@@ -124,7 +124,7 @@ body > footer {
 }
 
 .epigraph {
-    border-left: solid 2px;
+    border-left: 1.5px solid;
     border-image: linear-gradient(to bottom, var(--color-blue), var(--color-purple)) 1;
 }
 
@@ -223,7 +223,7 @@ g.edgeLabel span.edgeLabel {
         margin-left: 10px;
         padding-left: 10px;
         padding-bottom: 3px;
-        border-left: 2px solid;
+        border-left: 1.5px solid;
         border-image: linear-gradient(to bottom, var(--color-pink), var(--color-purple)) 1;
     }
 
