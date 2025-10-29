@@ -205,6 +205,10 @@ g.edgeLabel span.edgeLabel {
 }
 
 @media screen and (min-width: 760px) and (max-width: 960px) {
+    hr {
+        width: 87.5%;
+    }
+
     section > p,
     section > footer,
     section > table {
