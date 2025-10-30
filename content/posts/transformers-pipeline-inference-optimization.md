@@ -27,7 +27,7 @@ First, let's fine-tune the `roberta-base` model on the `squad` dataset for two e
 ```sh
 python run_qa.py \
   --model_name_or_path roberta-base \
-  --dataset_name squad \
+  --dataset_name rajpurkar/squad \
   --do_train \
   --per_device_train_batch_size 32 \
   --learning_rate 3e-5 \
@@ -48,7 +48,7 @@ from transformers import pipeline
 Metrics = dict[str, float]
 
 batch_size = 8
-data = load_dataset('squad', split='validation')
+data = load_dataset('rajpurkar/squad', split='validation')
 qa_evaluator = evaluator('question-answering')
 def qa_eval(model, tokenizer) -> Metrics:
     pipe = pipeline(
@@ -94,7 +94,7 @@ In some cases, task-specific knowledge distillation refers to the process of fin
 ```sh
 python run_qa.py \
   --model_name_or_path distilroberta-base \
-  --dataset_name squad \
+  --dataset_name rajpurkar/squad \
   --do_train \
   --per_device_train_batch_size 32 \
   --learning_rate 3e-5 \
@@ -218,7 +218,7 @@ If the changes have been applied correctly, training with two-step knowledge dis
 ```sh {hl_lines=10}
 python run_qa.py \
   --model_name_or_path distilroberta-base \
-  --dataset_name squad \
+  --dataset_name rajpurkar/squad \
   --do_train \
   --per_device_train_batch_size 32 \
   --learning_rate 3e-5 \
@@ -302,7 +302,7 @@ def encode(examples):
     )
 
 # 1. Prepare example inputs
-squad = load_dataset('squad', split=f'validation[:{batch_size}]')
+squad = load_dataset('rajpurkar/squad', split=f'validation[:{batch_size}]')
 example_batch = squad.map(
     encode,
     batched=True,
