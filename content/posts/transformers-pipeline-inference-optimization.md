@@ -266,7 +266,7 @@ In addition to the performance improvement by 8.4% compared to the original mode
 
 ## TorchScript
 
-*TorchScript* is a way to create serializable and optimizable models from PyTorch code.{{< sidenote >}}From PyTorch documentation on [TorchScript](https://pytorch.org/docs/stable/jit.html).{{< /sidenote >}}
+*TorchScript* is a way to create serializable and optimizable models from PyTorch code{{< sidenote >}}From PyTorch documentation on [TorchScript](https://pytorch.org/docs/stable/jit.html).{{< /sidenote >}}.
 
 There are two ways to use TorchScript models with pipelines:
 
@@ -340,7 +340,7 @@ There are several important tricks to get there:
 
 * TorchScript is optimized using just-in-time (JIT) compilation based on inputs. When inputs are different (and they are in the case of question answering), JIT recompilation will slow down the pipeline performance eventually. To keep the performance stable, it's essential to run TorchScript inside the `torch.jit.optimized_execution(False)` context manager.
 
-* The pipeline for question answering expects a model to return an instance of the `QuestionAnsweringModelOutput` class, while TorchScript will return a tuple of logits. To make it compatible with the pipeline API, it should be wrapped in a function mimicking the forward call. The original model's forward function is then replaced with the new wrapper.{{< sidenote >}}This is a more general technique that could be used to wrap the NVIDIA [Apex](https://github.com/nvidia/apex) for example.{{< /sidenote >}}
+* The pipeline for question answering expects a model to return an instance of the `QuestionAnsweringModelOutput` class, while TorchScript will return a tuple of logits. To make it compatible with the pipeline API, it should be wrapped in a function mimicking the forward call. The original model's forward function is then replaced with the new wrapper{{< sidenote >}}This is a more general technique that could be used to wrap the NVIDIA [Apex](https://github.com/nvidia/apex) for example.{{< /sidenote >}}.
 
 * Using TorchScript along with `autocast` is crucial for inference optimization.  In my experience, utilizing `autocast` during inference instead of tracing itself results in a slight improvement in performance.
 
@@ -348,7 +348,7 @@ While this approach may result in less noticeable performance improvements on so
   
 ## DeepSpeed
 
-Setting up [DeepSpeed](https://www.deepspeed.ai) integration requires more effort if there are missing system dependencies, such as Python shared libs and header files.{{< sidenote >}}More about DeepSpeed installation [here](https://www.deepspeed.ai/tutorials/advanced-install).{{< /sidenote >}} If you are using DeepSpeed for training, you can leverage [DeepSpeed-Inference](https://www.deepspeed.ai/inference) to perform inference as well. Despite the fact that DeepSpeed-Inference shares its name with DeepSpeed, it does not use [ZeRO](https://arxiv.org/abs/1910.02054) (Zero Redundancy Optimizer) technology.
+Setting up [DeepSpeed](https://www.deepspeed.ai) integration requires more effort if there are missing system dependencies, such as Python shared libs and header files{{< sidenote >}}More about DeepSpeed installation [here](https://www.deepspeed.ai/tutorials/advanced-install).{{< /sidenote >}}. If you are using DeepSpeed for training, you can leverage [DeepSpeed-Inference](https://www.deepspeed.ai/inference) to perform inference as well. Despite the fact that DeepSpeed-Inference shares its name with DeepSpeed, it does not use [ZeRO](https://arxiv.org/abs/1910.02054) (Zero Redundancy Optimizer) technology.
 
 Using DeepSpeed-Inference with the pipeline API is straightforward{{< sidenote >}}DeepSpeed-Inference [tutorial](https://www.deepspeed.ai/tutorials/inference-tutorial).{{< /sidenote >}}:
 ```py
@@ -374,7 +374,7 @@ Although I don't have the exact numbers for the same GPU used in the other metho
   
 ## Optimum
 
-[🤗 Optimum](https://github.com/huggingface/optimum) is an extension of 🤗 Transformers, providing a set of  performance optimization tools with unified API to train and run models on targeted hardware with maximum efficiency.{{< sidenote >}}More about 🤗 Optimum can be found in the [official documentation](https://huggingface.co/docs/optimum/index).{{< /sidenote >}} Optimum can be used for accelerated inference with built-in support for transformers pipelines, making it an ideal candidate for pipeline optimization techniques. I will demonstrate how to apply graph optimization to accelerate inference with ONNX Runtime.
+[🤗 Optimum](https://github.com/huggingface/optimum) is an extension of 🤗 Transformers, providing a set of  performance optimization tools with unified API to train and run models on targeted hardware with maximum efficiency{{< sidenote >}}More about 🤗 Optimum can be found in the [official documentation](https://huggingface.co/docs/optimum/index).{{< /sidenote >}}. Optimum can be used for accelerated inference with built-in support for transformers pipelines, making it an ideal candidate for pipeline optimization techniques. I will demonstrate how to apply graph optimization to accelerate inference with ONNX Runtime.
 
 [ONNX Runtime](https://onnxruntime.ai) (ORT) is a cross-platform, high-performance engine for [Open Neural Network Exchange (ONNX)](https://onnx.ai) models used to accelerate inference and training of machine learning models.
 

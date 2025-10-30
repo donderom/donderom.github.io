@@ -137,7 +137,7 @@ val stream: fs2.Stream[IO, ElasticsearchClient[IO]] = for {
 At this step, configuration loading and client creation emit one value, so they can remain in `IO` without any problem. The composition would be similar. When FS2 shines, though, is in dealing with I/O computations in constant memory.
 
 ## Composition
-It's common to run both an HTTP server and a Kafka (or any other) consumer concurrently within the scope of one microservice. Continuing this example, an HTTP server could serve data from an Elasticsearch index, while a consumer would index data from a Kafka topic(s). {{< sidenote >}}The code will be more abstract but two good libraries with FS2 support are [http4s](https://http4s.org/) and [fs2-kafka](https://fd4s.github.io/fs2-kafka/) respectively.{{< /sidenote >}}
+It's common to run both an HTTP server and a Kafka (or any other) consumer concurrently within the scope of one microservice. Continuing this example, an HTTP server could serve data from an Elasticsearch index, while a consumer would index data from a Kafka topic(s){{< sidenote >}}The code will be more abstract but two good libraries with FS2 support are [http4s](https://http4s.org/) and [fs2-kafka](https://fd4s.github.io/fs2-kafka/) respectively.{{< /sidenote >}}.
 
 A hypothetical API for a consumer that requires its own config and an Elasticsearch client producing a stream:
 
