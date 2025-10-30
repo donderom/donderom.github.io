@@ -20,7 +20,7 @@ To start off, let's establish the baseline and evaluation method, which will rem
 
 ## Baseline
 
-As a baseline, I'm going to use the [RoBERTa base](https://huggingface.co/roberta-base) model fine-tuned on the [SQuAD](https://huggingface.co/datasets/squad) dataset for extractive question answering. The training is done using the scripts from the [transformers](https://github.com/huggingface/transformers) [examples](https://github.com/huggingface/transformers/tree/v4.26.1/examples/pytorch/question-answering){{< sidenote >}}All training examples are based on the `v4.26.1` tag.{{< /sidenote >}} for PyTorch.
+As a baseline, I'm going to use the [RoBERTa base](https://huggingface.co/roberta-base) model fine-tuned on the [SQuAD](https://huggingface.co/datasets/rajpurkar/squad) dataset for extractive question answering. The training is done using the scripts from the [transformers](https://github.com/huggingface/transformers) [examples](https://github.com/huggingface/transformers/tree/v4.26.1/examples/pytorch/question-answering){{< sidenote >}}All training examples are based on the `v4.26.1` tag.{{< /sidenote >}} for PyTorch.
 
 First, let's fine-tune the `roberta-base` model on the `squad` dataset for two epochs with the following parameters (to match the examples from the `transformers`):
 

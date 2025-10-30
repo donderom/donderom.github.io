@@ -37,7 +37,7 @@ scala> s"name doesn't exist $name"
 It just doesn't compile at all! Very nice of the compiler, isn't it? It's not hard to comprehend why it's safe once you have gone through the documentation. If not, we'll address this in the next section.
 
 ## String Interpolation is extensible
-If you're still wondering what the `s` before the string literal does, the answer is that processed string literal is a code transformation that the compiler converts into a method call `s` on an instance of [StringContext](http://www.scala-lang.org/archives/downloads/distrib/files/nightly/docs/library/index.html#scala.StringContext). In other words, an expression like
+If you're still wondering what the `s` before the string literal does, the answer is that processed string literal is a code transformation that the compiler converts into a method call `s` on an instance of [StringContext](https://www.scala-lang.org/api/2.10.7/#scala.StringContext). In other words, an expression like
 ```scala
 s"x is $x"
 ```
