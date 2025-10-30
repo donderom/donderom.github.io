@@ -1,3 +1,1 @@
-{{ $sidenoteDomIdSuffix := .Ordinal }}<label for="sidenote-{{.Page.File.UniqueID}}-{{ $sidenoteDomIdSuffix }}" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sidenote-{{.Page.File.UniqueID}}-{{ $sidenoteDomIdSuffix }}" class="margin-toggle"/>
-<span class="sidenote">{{ .Inner | markdownify }}</span>
+{{ $sidenoteDomIdSuffix := .Ordinal }}<label for="sidenote-{{.Page.File.UniqueID}}-{{ $sidenoteDomIdSuffix }}" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sidenote-{{.Page.File.UniqueID}}-{{ $sidenoteDomIdSuffix }}" class="margin-toggle"/><span class="sidenote">{{ .Inner | markdownify }}</span>{{- /* Strip trailing newline. */ -}}
