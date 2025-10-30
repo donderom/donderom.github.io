@@ -170,7 +170,7 @@ val stream: fs2.Stream[IO, Unit] = for {
 } yield app
 ```
 
-And that's it! More information about `parJoin` and `parJoinUnbounded` {{< sidenote >}}For this example `parJoin(2)` and `parJoinUnbounded` are interchangeable but when adding one more service it's easy to forget to bump the `maxOpen` arguments of `parJoin`.{{< /sidenote >}}, as well as many other composition primitives such as `concurrently` (when the services depend on each other), can be found [here](https://s01.oss.sonatype.org/service/local/repositories/releases/archive/co/fs2/fs2-core_2.12/2.3.0/fs2-core_2.12-2.3.0-javadoc.jar/!/fs2/Stream.html). The complete snippet of the main entry point with basic error handling would look like this:
+And that's it! More information about `parJoin` and `parJoinUnbounded`{{< sidenote >}}For this example `parJoin(2)` and `parJoinUnbounded` are interchangeable but when adding one more service it's easy to forget to bump the `maxOpen` arguments of `parJoin`.{{< /sidenote >}}, as well as many other composition primitives such as `concurrently` (when the services depend on each other), can be found [here](https://s01.oss.sonatype.org/service/local/repositories/releases/archive/co/fs2/fs2-core_2.12/2.3.0/fs2-core_2.12-2.3.0-javadoc.jar/!/fs2/Stream.html). The complete snippet of the main entry point with basic error handling would look like this:
 
 ```scala
 object Main extends IOApp {
