@@ -54,11 +54,10 @@ h3 {
 }
 
 .header a.title {
-    background: none;
     background-color: var(--color-blue-bg);
     font-size: var(--size-lvl1);
     color: var(--color-black);
-    text-shadow: none;
+    text-decoration: none;
 }
 
 .header > .subtitle {
