@@ -16,3 +16,7 @@ disableHugoGeneratorInject = true
 [markup]
   [markup.highlight]
     noClasses = false
+
+[services]
+  [services.rss]
+    limit = 10
