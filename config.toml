@@ -17,6 +17,10 @@ disableHugoGeneratorInject = true
   [markup.highlight]
     noClasses = false
 
+[minify]
+  disableSVG = true
+  disableXML = true
+
 [services]
   [services.rss]
     limit = 10
