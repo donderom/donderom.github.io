@@ -1,0 +1,5 @@
+{{- $opts := dict "noClasses" true "style" "bw" -}}
+{{- $file := or .Attributes.file "" }}
+{{- $ext := strings.TrimPrefix "." (path.Ext $file) }}
+{{- $lang := or .Type $ext "text" -}}
+{{- transform.Highlight (strings.TrimSpace .Inner) $lang $opts -}}
