@@ -1,0 +1,3 @@
+<p>
+  <a href="{{ .Page.Permalink }}">View the diagrams on the website</a>
+</p>
