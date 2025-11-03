@@ -21,6 +21,7 @@ hr {
 
 article {
     padding-top: 0;
+    padding-bottom: 3rem;
 }
 
 article .subtitle {
@@ -122,6 +123,28 @@ body > footer {
     color: var(--color-gray);
 }
 
+.footer {
+    display: flex;
+    padding-bottom: 1rem;
+    width: 55%;
+    align-content: center;
+    align-items: center;
+}
+
+.footer::before,
+.footer::after {
+    flex: 1;
+    border-bottom: 1px dotted var(--color-gray);
+    content: "";
+}
+
+.footer img {
+    display: flex;
+    margin: auto;
+    padding: 0 12px;
+    width: 24px;
+}
+
 .epigraph {
     border-left: 1.5px solid;
     border-image: linear-gradient(to bottom, var(--color-blue), var(--color-purple)) 1;
@@ -198,6 +221,10 @@ g.edgeLabel span.edgeLabel {
         display: block;
     }
 
+    .footer {
+        width: 100%;
+    }
+
     .mermaid svg {
         width: 100%;
     }
@@ -210,7 +237,8 @@ g.edgeLabel span.edgeLabel {
 
     section > p,
     section > footer,
-    section > table {
+    section > table,
+    .footer {
         width: 87.5%;
     }
 
