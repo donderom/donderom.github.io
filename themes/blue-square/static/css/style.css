@@ -259,6 +259,10 @@ g.edgeLabel span.edgeLabel {
         width: 87.5%;
     }
 
+    .header .logo {
+        margin-left: -10%;
+    }
+
     .marginnote.listnote {
         width: 20%;
         margin-right: -13.5%;
