@@ -1,6 +1,7 @@
 :root {
     --color-blue-bg: #dbf1ff;
     --color-blue: #33b5e1;
+    --color-green: #dcfdae;
     --color-purple: #a363d5;
     --color-pink: #ffb0de;
     --color-gray: #869299;
@@ -40,6 +41,13 @@ h2 {
 
 h3 {
     font-size: var(--size-lvl3);
+}
+
+mark {
+    background: linear-gradient(120deg, var(--color-green) 0%, var(--color-green) 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 40%;
+    background-position: 0 90%;
 }
 
 .header {

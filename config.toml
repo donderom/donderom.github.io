@@ -14,6 +14,21 @@ disableHugoGeneratorInject = true
   feature = "features"
 
 [markup]
+  # https://gohugo.io/configuration/markup/#extras
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      strikethrough = false
+      [markup.goldmark.extensions.extras]
+        [markup.goldmark.extensions.extras.delete]
+          enable = true
+        [markup.goldmark.extensions.extras.insert]
+          enable = true
+        [markup.goldmark.extensions.extras.mark]
+          enable = true
+        [markup.goldmark.extensions.extras.subscript]
+          enable = false
+        [markup.goldmark.extensions.extras.superscript]
+          enable = false
   [markup.highlight]
     noClasses = false
 
