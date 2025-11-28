@@ -2,7 +2,7 @@
   {{ $title := print .Title " | " .Site.Title }}
   {{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}
   {{ $desc := print .Description }}
-  {{ if .IsHome }}{{ $desc = .Site.Params.subtitle }}{{ end }}
+  {{ if or .IsHome (not $desc) }}{{ $desc = .Site.Params.subtitle }}{{ end }}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="{{ .Site.Title }}">
